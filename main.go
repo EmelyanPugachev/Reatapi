@@ -29,7 +29,7 @@ func postTasks(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request"})
 	}
 	newtask := Taska{
-		Task: body.Task,
+		Task: "Hello " + body.Task,
 		ID:   uuid.NewString(),
 	}
 	tasks = append(tasks, newtask)
@@ -37,11 +37,29 @@ func postTasks(c echo.Context) error {
 }
 
 func patchTask(c echo.Context) error {
+	id := c.Param("id")
 	var body RequestBody
 	if err := c.Bind(&body); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request"})
 	}
-	return c.JSON(http.StatusAccepted, tasks)
+	for i, taski := range tasks {
+		if taski.ID == id {
+			tasks[i].Task = body.Task
+			return c.JSON(http.StatusOK, tasks[i])
+		}
+	}
+	return c.JSON(http.StatusBadRequest, map[string]string{"error": "Task not found"})
+}
+
+func deleteTask(c echo.Context) error {
+	id := c.Param("id")
+	for i, taski := range tasks {
+		if taski.ID == id {
+			tasks = append(tasks[:i], tasks[i+1:]...)
+			return c.NoContent(http.StatusNoContent)
+		}
+	}
+	return c.JSON(http.StatusBadRequest, map[string]string{"error": "Task not found"})
 }
 
 func main() {
@@ -50,6 +68,8 @@ func main() {
 	e.Use(middleware.Logger())
 	e.GET("/", getTasks)
 	e.POST("/", postTasks)
+	e.PATCH("/:id", patchTask)
+	e.DELETE("/:id", deleteTask)
 	e.Start("localhost:8080")
 
 }
