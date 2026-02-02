@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/.idea/queries/Query.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/migrations/20260124110750_tasks.down.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/migrations/20260124110750_tasks.up.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/20260130150927_tasks.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/20260130150927_tasks.up.sql" dialect="PostgreSQL" />
   </component>
 </project>

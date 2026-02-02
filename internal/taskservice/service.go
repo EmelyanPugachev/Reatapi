@@ -19,7 +19,7 @@ func NewTaskService(r TaskRepository) TaskService {
 }
 
 func (s *taskaService) makeTask(task string) string {
-	result := "Hello " + task
+	result := "Call " + task
 	return result
 }
 
