@@ -42,8 +42,8 @@ components:
       type: object
       properties:
         id:
-          type: string
+          type: integer
         task:
           type: string
         is_done:
-          type: bool
+          type: boolean

@@ -5,6 +5,7 @@ type TaskaRequest struct {
 }
 
 type Taska struct {
-	Task string `json:"task"`
-	ID   string `gorm:"primarykey" json:"id"`
+	Task   string `json:"task"`
+	ID     string `gorm:"primarykey" json:"id"`
+	IsDone bool   `json:"isDone"`
 }
