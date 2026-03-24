@@ -15,7 +15,7 @@ import (
 
 // Taska defines model for Taska.
 type Taska struct {
-	Id     *int    `json:"id,omitempty"`
+	Id     *string `json:"id,omitempty"`
 	IsDone *bool   `json:"is_done,omitempty"`
 	Task   *string `json:"task,omitempty"`
 }

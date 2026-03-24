@@ -3,7 +3,7 @@ package taskservice
 import "github.com/google/uuid"
 
 type TaskService interface {
-	CreateTask(task string) (Taska, error)
+	CreateTask(in Taska) (Taska, error)
 	GetAllTasks() ([]Taska, error)
 	GetTaskByID(id string) (Taska, error)
 	UpdateTask(id, task string) (Taska, error)
@@ -23,11 +23,11 @@ func (s *taskaService) makeTask(task string) string {
 	return result
 }
 
-func (s *taskaService) CreateTask(task string) (Taska, error) {
-	result := s.makeTask(task)
+func (s *taskaService) CreateTask(in Taska) (Taska, error) {
 	taska := Taska{
-		ID:   uuid.NewString(),
-		Task: result,
+		ID:     uuid.NewString(),
+		Task:   s.makeTask(in.Task),
+		IsDone: in.IsDone,
 	}
 	if err := s.repo.CreateTask(taska); err != nil {
 		return Taska{}, err

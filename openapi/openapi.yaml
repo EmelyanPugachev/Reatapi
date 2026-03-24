@@ -42,7 +42,7 @@ components:
       type: object
       properties:
         id:
-          type: integer
+          type: string
         task:
           type: string
         is_done:
